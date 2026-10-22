@@ -76,7 +76,7 @@ mcfly-inventario/
 - [x] Levantamiento de requerimientos
 - [x] Instalación del entorno (SQL Server, SSMS, Git)
 - [x] Tablas `sucursales` y `usuarios`
-- [ ] Tablas `proveedores`, `productos` y `producto_proveedor`
+- [x] Tablas `proveedores`, `productos` y `producto_proveedor`
 - [ ] Tabla `producto_sucursal` (stock mínimo por sucursal)
 - [ ] Tablas `compras` y `compra_detalle`
 - [ ] Tabla `transferencias`
