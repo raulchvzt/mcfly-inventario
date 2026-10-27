@@ -128,6 +128,48 @@ CREATE TABLE producto_proveedor (
 GO
 
 -- ------------------------------------------------------------
+-- Transferencias (encabezado)
+-- ------------------------------------------------------------
+CREATE TABLE transferencias (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  sucursal_origen_id INT NOT NULL,
+  sucursal_destino_id INT NOT NULL,
+  estado VARCHAR(20) NOT NULL DEFAULT 'pendiente'
+    CONSTRAINT ck_transf_estado CHECK (estado IN ('pendiente', 'confirmada')),
+  creada_por INT NOT NULL,
+  creada_en DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+  confirmada_por INT NULL,
+  confirmada_en DATETIME2 NULL,
+  notas NVARCHAR(255) NULL,
+  CONSTRAINT fk_transf_origen FOREIGN KEY (sucursal_origen_id) REFERENCES sucursales(id),
+  CONSTRAINT fk_transf_destino FOREIGN KEY (sucursal_destino_id) REFERENCES sucursales(id),
+  CONSTRAINT fk_transf_creada_por FOREIGN KEY (creada_por) REFERENCES usuarios(id),
+  CONSTRAINT fk_transf_confirmada_por FOREIGN KEY (confirmada_por) REFERENCES usuarios(id),
+  CONSTRAINT ck_transf_sucursales CHECK (sucursal_origen_id <> sucursal_destino_id),
+  CONSTRAINT ck_transf_confirmacion CHECK (
+    (estado = 'pendiente' AND confirmada_por IS NULL AND confirmada_en IS NULL)
+    OR
+    (estado = 'confirmada' AND confirmada_por IS NOT NULL AND confirmada_en IS NOT NULL)
+  )
+);
+
+-- ------------------------------------------------------------
+-- Detalle de transferencias (una línea por producto)
+-- ------------------------------------------------------------
+CREATE TABLE transferencia_detalle (
+  id INT IDENTITY(1,1) PRIMARY KEY,
+  transferencia_id INT NOT NULL,
+  producto_id INT NOT NULL,
+  cantidad DECIMAL(10,2) NOT NULL
+    CONSTRAINT ck_td_cantidad CHECK (cantidad > 0),
+  CONSTRAINT uq_td_transf_producto UNIQUE (transferencia_id, producto_id),
+  CONSTRAINT fk_td_transferencia FOREIGN KEY (transferencia_id) REFERENCES transferencias(id),
+  CONSTRAINT fk_td_producto FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+GO
+
+
+-- ------------------------------------------------------------
 -- Datos iniciales
 -- ------------------------------------------------------------
 INSERT INTO sucursales (nombre) VALUES ('McFly Centro'), ('McFly Villa');

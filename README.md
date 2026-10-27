@@ -79,7 +79,7 @@ mcfly-inventario/
 - [x] Tablas `proveedores`, `productos` y `producto_proveedor`
 - [x] Tabla `producto_sucursal` (stock mínimo por sucursal)
 - [x] Tablas `compras` y `compra_detalle`
-- [ ] Tabla `transferencias`
+- [x] Tabla `transferencias`
 - [ ] Tabla `movimientos`
 - [ ] Backend: autenticación y roles
 - [ ] Backend: productos, movimientos, stock y alertas
