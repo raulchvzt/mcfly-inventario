@@ -76,9 +76,9 @@ mcfly-inventario/
 - [x] Levantamiento de requerimientos
 - [x] Instalación del entorno (SQL Server, SSMS, Git)
 - [x] Tablas `sucursales` y `usuarios`
-- [ ] Tablas `proveedores`, `productos` y `producto_proveedor`
-- [ ] Tabla `producto_sucursal` (stock mínimo por sucursal)
-- [ ] Tablas `compras` y `compra_detalle`
+- [x] Tablas `proveedores`, `productos` y `producto_proveedor`
+- [x] Tabla `producto_sucursal` (stock mínimo por sucursal)
+- [x] Tablas `compras` y `compra_detalle`
 - [ ] Tabla `transferencias`
 - [ ] Tabla `movimientos`
 - [ ] Backend: autenticación y roles
@@ -89,4 +89,4 @@ mcfly-inventario/
 
 ## Autor
 
-Tu nombre · [GitHub](https://github.com/TU-USUARIO)
+Raul Alejandro · [GitHub](https://github.com/TU-USUARIO)
