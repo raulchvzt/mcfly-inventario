@@ -168,6 +168,70 @@ CREATE TABLE transferencia_detalle (
 );
 GO
 
+-- ------------------------------------------------------------
+-- Movimientos (libro de inventario: solo se agregan filas)
+-- ------------------------------------------------------------
+CREATE TABLE movimientos (
+  id BIGINT IDENTITY(1,1) PRIMARY KEY,
+  producto_id INT NOT NULL,
+  sucursal_id INT NOT NULL,
+  tipo VARCHAR(25) NOT NULL
+    CONSTRAINT ck_mov_tipo CHECK (tipo IN
+      ('entrada', 'consumo', 'merma', 'transferencia_salida', 'transferencia_entrada', 'ajuste')),
+  cantidad DECIMAL(10,2) NOT NULL,
+  costo_unitario DECIMAL(10,2) NULL
+    CONSTRAINT ck_mov_costo CHECK (costo_unitario IS NULL OR costo_unitario >= 0),
+  usuario_id INT NOT NULL,
+  fecha DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+  motivo NVARCHAR(255) NULL,
+  compra_detalle_id INT NULL,
+  transferencia_id INT NULL,
+  CONSTRAINT fk_mov_producto FOREIGN KEY (producto_id) REFERENCES productos(id),
+  CONSTRAINT fk_mov_sucursal FOREIGN KEY (sucursal_id) REFERENCES sucursales(id),
+  CONSTRAINT fk_mov_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+  CONSTRAINT fk_mov_compra_detalle FOREIGN KEY (compra_detalle_id) REFERENCES compra_detalle(id),
+  CONSTRAINT fk_mov_transferencia FOREIGN KEY (transferencia_id) REFERENCES transferencias(id),
+  -- El signo de la cantidad debe corresponder al tipo
+  CONSTRAINT ck_mov_signo CHECK (
+    (tipo IN ('entrada', 'transferencia_entrada') AND cantidad > 0)
+    OR (tipo IN ('consumo', 'merma', 'transferencia_salida') AND cantidad < 0)
+    OR (tipo = 'ajuste' AND cantidad <> 0)
+  ),
+  -- RN3: merma y ajuste exigen motivo
+  CONSTRAINT ck_mov_motivo CHECK (
+    tipo NOT IN ('merma', 'ajuste')
+    OR (motivo IS NOT NULL AND LEN(LTRIM(RTRIM(motivo))) > 0)
+  ),
+  -- Cada tipo se vincula con su origen
+  CONSTRAINT ck_mov_origen CHECK (
+    (tipo = 'entrada' AND compra_detalle_id IS NOT NULL AND transferencia_id IS NULL)
+    OR (tipo IN ('transferencia_entrada', 'transferencia_salida')
+        AND transferencia_id IS NOT NULL AND compra_detalle_id IS NULL)
+    OR (tipo IN ('consumo', 'merma', 'ajuste')
+        AND compra_detalle_id IS NULL AND transferencia_id IS NULL)
+  )
+);
+
+CREATE INDEX ix_mov_stock ON movimientos (sucursal_id, producto_id) INCLUDE (cantidad);
+CREATE INDEX ix_mov_fecha ON movimientos (fecha);
+GO
+
+-- RN1: los movimientos no se editan ni se borran
+CREATE TRIGGER trg_movimientos_inmutables
+ON movimientos
+INSTEAD OF UPDATE, DELETE
+AS
+BEGIN
+  THROW 50001, 'Los movimientos no se pueden editar ni borrar. Registra un ajuste.', 1;
+END;
+GO
+
+-- Stock actual por producto y sucursal
+CREATE VIEW v_stock AS
+SELECT producto_id, sucursal_id, SUM(cantidad) AS stock
+FROM movimientos
+GROUP BY producto_id, sucursal_id;
+GO
 
 -- ------------------------------------------------------------
 -- Datos iniciales
