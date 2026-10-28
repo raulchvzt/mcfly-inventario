@@ -2,12 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const { getPool } = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
+const proveedoresRoutes = require('./routes/proveedores.routes');
+const productosRoutes = require('./routes/productos.routes');
+const { noEncontrado, manejarErrores } = require('./middleware/errores');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/auth', authRoutes);
 
 app.get('/api/health', async (req, res) => {
   try {
@@ -19,5 +21,13 @@ app.get('/api/health', async (req, res) => {
     res.status(500).json({ ok: false, error: 'No se pudo conectar a la base de datos' });
   }
 });
+
+app.use('/api/auth', authRoutes);
+app.use('/api/proveedores', proveedoresRoutes);
+app.use('/api/productos', productosRoutes);
+
+// Siempre al final
+app.use(noEncontrado);
+app.use(manejarErrores);
 
 module.exports = app;
