@@ -81,8 +81,9 @@ mcfly-inventario/
 - [x] Tablas `compras` y `compra_detalle`
 - [x] Tabla `transferencias`
 - [x] Tabla `movimientos`
-- [ ] Backend: autenticación y roles
-- [ ] Backend: productos, movimientos, stock y alertas
+- [x] Backend: autenticación y roles
+- [x] Backend: productos, movimientos, stock y alertas
+- [x] Backend: API de proveedores y productos (CRUD con validación y roles)
 - [ ] Frontend: login, catálogo, movimientos, inventario y panel
 - [ ] Reportes y conteos físicos
 - [ ] Datos de ejemplo (`seed`), capturas y despliegue
