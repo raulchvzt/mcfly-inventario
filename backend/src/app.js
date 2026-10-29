@@ -5,6 +5,9 @@ const authRoutes = require('./routes/auth.routes');
 const proveedoresRoutes = require('./routes/proveedores.routes');
 const productosRoutes = require('./routes/productos.routes');
 const { noEncontrado, manejarErrores } = require('./middleware/errores');
+const usuariosRoutes = require('./routes/usuarios.routes');
+const productoRelacionesRoutes = require('./routes/productoRelaciones.routes');
+
 
 const app = express();
 
@@ -25,7 +28,8 @@ app.get('/api/health', async (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/proveedores', proveedoresRoutes);
 app.use('/api/productos', productosRoutes);
-
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/producto-relaciones', productoRelacionesRoutes);
 // Siempre al final
 app.use(noEncontrado);
 app.use(manejarErrores);
