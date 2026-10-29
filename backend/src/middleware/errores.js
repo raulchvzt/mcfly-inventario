@@ -1,9 +1,14 @@
+const ErrorHttp = require('../utils/errorHttp');
+
 function noEncontrado(req, res) {
   res.status(404).json({ error: 'Ruta no encontrada' });
 }
 
 // eslint-disable-next-line no-unused-vars
 function manejarErrores(err, req, res, next) {
+  if (err instanceof ErrorHttp) {
+    return res.status(err.status).json({ error: err.message, ...err.extra });
+  }
   // Errores de SQL Server
   if (err.number === 2627 || err.number === 2601) {
     return res.status(409).json({ error: 'Ya existe un registro con esos datos' });
