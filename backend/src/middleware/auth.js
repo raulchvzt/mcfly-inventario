@@ -1,22 +1,36 @@
 const jwt = require('jsonwebtoken');
+const { sql, getPool } = require('../config/db');
 
-function autenticar(req, res, next) {
+async function autenticar(req, res, next) {
   const [tipo, token] = (req.headers.authorization || '').split(' ');
 
   if (tipo !== 'Bearer' || !token) {
     return res.status(401).json({ error: 'Token requerido' });
   }
 
+  let payload;
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.usuario = {
-      id: Number(payload.sub),
-      rol: payload.rol,
-      sucursalId: payload.sucursalId,
-    };
-    next();
+    payload = jwt.verify(token, process.env.JWT_SECRET);
   } catch {
-    res.status(401).json({ error: 'Token inválido o expirado' });
+    return res.status(401).json({ error: 'Token inválido o expirado' });
+  }
+
+  try {
+    // Se confía en la base de datos, no en lo que dice el token
+    const result = await (await getPool())
+      .request()
+      .input('id', sql.Int, Number(payload.sub))
+      .query('SELECT id, rol, sucursal_id, activo FROM usuarios WHERE id = @id');
+
+    const u = result.recordset[0];
+    if (!u || !u.activo) {
+      return res.status(401).json({ error: 'Usuario inactivo o inexistente' });
+    }
+
+    req.usuario = { id: u.id, rol: u.rol, sucursalId: u.sucursal_id };
+    next();
+  } catch (err) {
+    next(err);
   }
 }
 
