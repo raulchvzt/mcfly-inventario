@@ -9,6 +9,7 @@ const usuariosRoutes = require('./routes/usuarios.routes');
 const productoRelacionesRoutes = require('./routes/productoRelaciones.routes');
 const movimientosRoutes = require('./routes/movimientos.routes');
 const stockRoutes = require('./routes/stock.routes');
+const comprasRoutes = require('./routes/compras.routes');
 
 
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/producto-relaciones', productoRelacionesRoutes);
 app.use('/api/movimientos', movimientosRoutes);
 app.use('/api/stock', stockRoutes);
+app.use('/api/compras', comprasRoutes);
 
 // Siempre al final
 app.use(noEncontrado);
