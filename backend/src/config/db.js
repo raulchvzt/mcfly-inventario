@@ -10,6 +10,7 @@ const config = {
   options: {
     encrypt: true,
     trustServerCertificate: true, // solo para desarrollo local
+    useUTC: false,
   },
   pool: { max: 10, min: 0, idleTimeoutMillis: 30000 },
 };
