@@ -1,0 +1,33 @@
+:root {
+  --font: 'Poppins', system-ui, sans-serif;
+  --tx: #101828;
+  --mu: #667085;
+  --ln: #e6eaf0;
+  --bg: #f7f9fb;
+  --sf: #ffffff;
+  --field: #f4f6f8;
+  --pr: #0e7ab5;
+  --pr-h: #0b6699;
+  --b1: #1d9bd8;
+  --b2: #a9daf1;
+  --navy: #0f2a44;
+  --red: #e21b34;
+  --lo: #f59e0b;
+  --ag: #d92d20;
+  --ok: #12a66b;
+  --r: 12px;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--tx);
+  background: var(--sf);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; }
+:focus-visible { outline: 2px solid var(--pr); outline-offset: 2px; }
+.pantalla-carga { display: grid; place-items: center; height: 100%; color: var(--mu); }
