@@ -1,0 +1,116 @@
+.panel { display: flex; flex-direction: column; gap: 24px; max-width: 1760px; margin: 0 auto; }
+
+.cab { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.cab h1 { margin: 0; font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
+.fecha { margin: 4px 0 0; font-size: 15px; color: var(--mu); }
+.fecha::first-letter { text-transform: uppercase; }
+.cab__der { display: flex; align-items: center; gap: 14px; }
+.seg { display: flex; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; padding: 4px; }
+.seg button { border: 0; background: none; padding: 9px 20px; border-radius: 10px; font-size: 15px; color: var(--mu); cursor: pointer; }
+.seg button.on { background: var(--pr); color: #fff; }
+.etiqueta { font-size: 15px; padding: 11px 18px; border: 1px solid var(--ln); border-radius: 14px; background: var(--sf); }
+.campana { position: relative; width: 48px; height: 48px; display: grid; place-items: center; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; color: var(--mu); }
+.campana b { position: absolute; top: -7px; right: -7px; min-width: 22px; height: 22px; padding: 0 6px; display: grid; place-items: center; border-radius: 999px; background: var(--ag); color: #fff; font-size: 13px; font-weight: 500; }
+
+.resumen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.fila2 { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; }
+.tarjeta { background: var(--sf); border: 1px solid var(--ln); border-radius: 20px; padding: 26px; min-width: 0; }
+.tarjeta__titulo { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 15px; color: var(--mu); }
+.tarjeta__titulo svg { color: var(--pr); }
+.tarjeta__valor { margin: 0; font-size: 40px; font-weight: 600; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.tarjeta__cab { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
+.tarjeta__cab h2 { margin: 0; font-size: 18px; font-weight: 500; }
+.mu { margin: 0; color: var(--mu); font-size: 14px; }
+
+.barra { display: flex; gap: 4px; height: 10px; margin: 18px 0 14px; background: var(--field); border-radius: 5px; overflow: hidden; }
+.barra span { border-radius: 5px; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--mu); }
+.leyenda i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 3px; }
+.leyenda b { margin-left: 4px; font-weight: 500; color: var(--tx); }
+
+.col { display: flex; align-items: flex-end; gap: 18px; height: 250px; }
+.col__dia { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 3px; }
+.col__dia span { display: block; min-height: 4px; border-radius: 6px; }
+.col__etq { display: flex; gap: 18px; margin: 10px 0 16px; }
+.col__etq span { flex: 1; text-align: center; font-size: 14px; color: var(--mu); text-transform: capitalize; }
+
+.alertas { margin: 0; padding: 0; list-style: none; }
+.alertas li { padding: 16px 0; border-top: 1px solid var(--ln); }
+.alertas li:first-child { padding-top: 0; border-top: 0; }
+.fila { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.nm { margin: 0; font-size: 16px; font-weight: 500; }
+.nm .mu { font-weight: 400; }
+.pb { height: 8px; margin: 10px 0 8px; background: var(--field); border-radius: 5px; overflow: hidden; }
+.pb span { display: block; height: 100%; border-radius: 5px; }
+.sobrante { display: flex; align-items: center; gap: 6px; margin: 6px 0 0; font-size: 14px; color: var(--pr); }
+
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 999px; font-size: 13px; white-space: nowrap; }
+.badge--lo { background: #fef3c7; color: #92400e; }
+.badge--ag { background: #fee4e2; color: #b42318; }
+.badge--tr { background: #e0f2fb; color: #0b5e8e; }
+
+.scroll { overflow-x: auto; }
+.tabla { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tabla th { padding: 0 10px 10px; text-align: left; font-size: 13px; font-weight: 400; color: var(--mu); }
+.tabla td { padding: 14px 10px; border-top: 1px solid var(--ln); vertical-align: top; }
+.tabla th:first-child, .tabla td:first-child { padding-left: 0; }
+.tabla small { display: block; margin-top: 2px; font-size: 13px; color: var(--mu); }
+.tabla .der { text-align: right; font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tabla .pos { color: var(--ok); }
+
+.transf { padding: 16px 0; border-top: 1px solid var(--ln); }
+.transf:first-of-type { padding-top: 0; border-top: 0; }
+.transf__items { margin: 10px 0; padding: 0; list-style: none; font-size: 15px; line-height: 1.7; }
+
+.btn-pr { width: 100%; height: 48px; margin-top: 14px; border: 0; border-radius: 14px; background: var(--pr); color: #fff; font-size: 15px; font-weight: 500; cursor: pointer; }
+.btn-pr:hover { background: var(--pr-h); }
+.btn-pr:disabled { opacity: 0.7; cursor: wait; }
+.panel-error { margin: 0 0 12px; padding: 12px 14px; border-radius: 14px; background: #fee4e2; color: #b42318; font-size: 14px; }
+.vacio { display: flex; align-items: center; gap: 10px; margin: 0; padding: 8px 0; font-size: 15px; color: var(--mu); }
+
+@media (max-width: 1100px) {
+  .panel { gap: 18px; }
+  .resumen, .fila2 { gap: 18px; }
+  .resumen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fila2 { grid-template-columns: minmax(0, 1fr); }
+  .tarjeta { padding: 20px; }
+  .tarjeta__valor { font-size: 34px; }
+  .col { height: 200px; gap: 12px; }
+  .col__etq { gap: 12px; }
+}
+@media (max-width: 640px) {
+  .resumen { grid-template-columns: minmax(0, 1fr); }
+  .cab h1 { font-size: 28px; }
+}
+
+/* Entrada en cascada: cada elemento espera --i x 90 ms antes de aparecer */
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes llenar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes crecer {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entra {
+    animation: entrar 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+  .barra span,
+  .pb span {
+    transform-origin: left;
+    animation: llenar 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 300ms);
+  }
+  .col__dia span {
+    transform-origin: bottom;
+    animation: crecer 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 300ms + var(--d, 0) * 60ms);
+  }
+}
