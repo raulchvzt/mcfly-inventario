@@ -21,6 +21,7 @@ async function consultarStock({ sucursalId, categoria, buscar, soloAlertas = fal
   const result = await request.query(
     `SELECT p.id AS productoId, p.nombre, p.categoria, p.presentacion,
             p.unidad_medida AS unidadMedida,
+            CASE WHEN p.imagen_tipo IS NULL THEN NULL ELSE p.imagen_version END AS imagenV,
             s.id AS sucursalId, s.nombre AS sucursal,
             ISNULL(v.stock, 0) AS stock,
             ISNULL(ps.stock_minimo, 0) AS stockMinimo

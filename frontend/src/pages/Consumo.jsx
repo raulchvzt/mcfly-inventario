@@ -9,6 +9,7 @@ import {
 } from '@tabler/icons-react';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
+import { BotonFoto, FotoProducto } from '../components/FotoProducto';
 import { horaMovimiento, numero, UNIDAD } from '../utils/formato';
 import './Consumo.css';
 
@@ -126,6 +127,10 @@ export default function Consumo() {
     else if (cant > producto.stock) {
       problema = `Solo hay ${numero(producto.stock)} ${unidad} disponibles.`;
     }
+  }
+
+  function cambiarFoto(productoId, imagenV) {
+    setItems((prev) => prev.map((i) => (i.productoId === productoId ? { ...i, imagenV } : i)));
   }
 
   function elegir(item) {
@@ -258,7 +263,7 @@ export default function Consumo() {
                 const seleccionado = i.productoId === elegido;
                 const estado = i.stock <= 0 ? 'agotado' : i.estado;
                 return (
-                  <li key={i.productoId}>
+                  <li key={i.productoId} className="cn__fila">
                     <button
                       type="button"
                       className={`cn__item${seleccionado ? ' on' : ''}`}
@@ -266,6 +271,7 @@ export default function Consumo() {
                       disabled={i.stock <= 0}
                       onClick={() => elegir(i)}
                     >
+                      <FotoProducto producto={i} tamano={48} />
                       <span className="cn__item-nom">
                         <b>{i.nombre}</b>
                         <small>{i.presentacion}</small>
@@ -277,6 +283,7 @@ export default function Consumo() {
                         <Estado estado={estado} />
                       </span>
                     </button>
+                    {esDueno && <BotonFoto producto={i} onCambio={cambiarFoto} onError={setError} />}
                   </li>
                 );
               })}
@@ -311,13 +318,18 @@ export default function Consumo() {
           {producto ? (
             <form className="cn__form" onSubmit={registrar}>
               <p className="cn__etq">Producto elegido</p>
-              <h2>{producto.nombre}</h2>
-              <p className="cn__mu">
-                {producto.presentacion} · Disponible:{' '}
-                <b>
-                  {numero(producto.stock)} {unidad}
-                </b>
-              </p>
+              <div className="cn__elegido">
+                <FotoProducto producto={producto} tamano={72} />
+                <div>
+                  <h2>{producto.nombre}</h2>
+                  <p className="cn__mu">
+                    {producto.presentacion} · Disponible:{' '}
+                    <b>
+                      {numero(producto.stock)} {unidad}
+                    </b>
+                  </p>
+                </div>
+              </div>
 
               <label htmlFor="cantidad" className="cn__etq">
                 Cantidad ({unidad})

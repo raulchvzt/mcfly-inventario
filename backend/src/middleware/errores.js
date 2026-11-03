@@ -23,6 +23,10 @@ function manejarErrores(err, req, res, next) {
     return res.status(400).json({ error: 'JSON inválido' });
   }
 
+    if (err.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'La imagen es demasiado grande' });
+  }
+
   console.error(err);
   res.status(500).json({ error: 'Error del servidor' });
 }
