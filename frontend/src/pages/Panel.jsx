@@ -11,7 +11,8 @@ import {
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { haceCuanto, horaMovimiento, moneda, numero, UNIDAD } from '../utils/formato';
-import './Panel.css';
+import './Panel.css'
+import Consumo from './Consumo';;
 
 const COLORES_SUC = ['var(--b1)', 'var(--b2)', '#cbd5e1'];
 const TIPOS = {
@@ -449,16 +450,8 @@ function PanelGestion() {
   );
 }
 
-function PanelEmpleado({ nombre }) {
-  return (
-    <section className="panel">
-      <h1>Hola, {nombre}</h1>
-      <p className="mu">Aquí podrás registrar el consumo de producto. Esta pantalla llega pronto.</p>
-    </section>
-  );
-}
 
 export default function Panel() {
   const { usuario } = useAuth();
-  return usuario.rol === 'empleado' ? <PanelEmpleado nombre={usuario.nombre} /> : <PanelGestion />;
+  return usuario.rol === 'empleado' ? <Consumo /> : <PanelGestion />;
 }

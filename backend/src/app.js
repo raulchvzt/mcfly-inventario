@@ -12,6 +12,7 @@ const stockRoutes = require('./routes/stock.routes');
 const comprasRoutes = require('./routes/compras.routes');
 const transferenciasRoutes = require('./routes/transferencias.routes');
 const resumenRoutes = require('./routes/resumen.routes');
+const sucursalesRoutes = require('./routes/sucursales.routes');
 
 
 const app = express();
@@ -40,8 +41,10 @@ app.use('/api/stock', stockRoutes);
 app.use('/api/compras', comprasRoutes);
 app.use('/api/transferencias', transferenciasRoutes);
 app.use('/api/resumen', resumenRoutes);
+app.use('/api/sucursales', sucursalesRoutes);
 // Siempre al final
 app.use(noEncontrado);
 app.use(manejarErrores);
+
 
 module.exports = app;
