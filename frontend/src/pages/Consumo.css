@@ -20,11 +20,11 @@
 .cn__buscar input { flex: 1; min-width: 0; border: 0; background: none; font-size: 16px; color: var(--tx); outline: none; }
 
 .cn__lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; max-height: 560px; overflow-y: auto; }
-.cn__item { width: 100%; min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; text-align: left; color: var(--tx); cursor: pointer; }
+.cn__item { width: 100%; min-height: 68px; display: flex; align-items: center; justify-content: flex-start; gap: 14px; padding: 10px 16px 10px 12px; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; text-align: left; color: var(--tx); cursor: pointer; }
 .cn__item:hover:not(:disabled) { border-color: var(--b1); }
 .cn__item.on { border-color: var(--pr); background: #e3f3fb; }
 .cn__item:disabled { opacity: 0.55; cursor: not-allowed; }
-.cn__item-nom { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.cn__item-nom { display: flex; flex: 1; flex-direction: column; gap: 2px; min-width: 0; }
 .cn__item-nom b { font-size: 16px; font-weight: 500; }
 .cn__item-nom small { font-size: 13px; color: var(--mu); }
 .cn__item-stock { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 15px; white-space: nowrap; }
@@ -74,3 +74,9 @@
   .cn__card { padding: 18px; border-radius: 18px; }
   .cn__lista { max-height: 48vh; }
 }
+
+/* Fotos de producto */
+.cn__fila { position: relative; }
+.cn__fila .foto-cam { top: calc(50% + 3px); left: 42px; }
+.cn__elegido { display: flex; align-items: center; gap: 16px; margin-bottom: 4px; }
+.cn__elegido h2 { margin: 0 0 4px; }

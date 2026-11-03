@@ -40,3 +40,22 @@ export async function api(path, { method = 'GET', body } = {}) {
   }
   return data;
 }
+
+export async function apiSubir(path, blob) {
+  let res;
+  try {
+    res = await fetch(`/api${path}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': blob.type },
+      body: blob,
+    });
+  } catch {
+    throw new ApiError(0, 'No se pudo conectar con el servidor.');
+  }
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    if (res.status === 401) alExpirarSesion();
+    throw new ApiError(res.status, data?.error || 'Ocurrió un error.', data);
+  }
+  return data;
+}

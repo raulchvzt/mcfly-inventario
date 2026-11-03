@@ -1,9 +1,12 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const { z } = require('zod');
 const { sql, getPool } = require('../config/db');
 const { autenticar, permitirRoles } = require('../middleware/auth');
 const { validar } = require('../middleware/validar');
 const asyncHandler = require('../middleware/asyncHandler');
+
+
 
 const idSchema = z.object({ id: z.coerce.number().int().positive() });
 
@@ -24,7 +27,8 @@ const listaSchema = z.object({
 });
 
 const COLUMNAS = `id, nombre, categoria, presentacion,
-  unidad_medida AS unidadMedida, ultimo_costo AS ultimoCosto, activo`;
+  unidad_medida AS unidadMedida, ultimo_costo AS ultimoCosto, activo,
+  CASE WHEN imagen_tipo IS NULL THEN NULL ELSE imagen_version END AS imagenVersion`;
 
 const OUTPUT = `INSERTED.id, INSERTED.nombre, INSERTED.categoria, INSERTED.presentacion,
   INSERTED.unidad_medida AS unidadMedida, INSERTED.ultimo_costo AS ultimoCosto,
@@ -181,6 +185,100 @@ router.patch(
       return res.status(404).json({ error: 'Producto no encontrado' });
     }
     res.json(result.recordset[0]);
+  })
+);
+
+// ---------- Foto del producto ----------
+
+// Comprueba los primeros bytes: el archivo debe ser de verdad una imagen
+function tipoReal(buf) {
+  if (buf.length > 12 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return 'image/jpeg';
+  if (
+    buf.length > 8 &&
+    buf.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+  ) {
+    return 'image/png';
+  }
+  if (buf.length > 12 && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WEBP') {
+    return 'image/webp';
+  }
+  return null;
+}
+
+// Ver la foto (pública: la etiqueta <img> no puede enviar el token)
+router.get(
+  '/:id/imagen',
+  validar({ params: idSchema }),
+  asyncHandler(async (req, res) => {
+    const result = await (await getPool())
+      .request()
+      .input('id', sql.Int, req.datos.params.id)
+      .query('SELECT imagen, imagen_tipo AS tipo FROM productos WHERE id = @id AND imagen IS NOT NULL');
+
+    const f = result.recordset[0];
+    if (!f) return res.status(404).json({ error: 'Imagen no encontrada' });
+
+    res.set({
+      'Content-Type': f.tipo,
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      'X-Content-Type-Options': 'nosniff',
+    });
+    res.send(f.imagen);
+  })
+);
+
+// Subir o reemplazar la foto (solo dueño)
+router.put(
+  '/:id/imagen',
+  autenticar,
+  permitirRoles('dueno'),
+  express.raw({ type: ['image/jpeg', 'image/png', 'image/webp'], limit: '300kb' }),
+  validar({ params: idSchema }),
+  asyncHandler(async (req, res) => {
+    if (!Buffer.isBuffer(req.body) || req.body.length === 0) {
+      return res.status(400).json({ error: 'Envía una imagen JPEG, PNG o WebP' });
+    }
+    const tipo = tipoReal(req.body);
+    if (!tipo || tipo !== req.headers['content-type'].split(';')[0].trim()) {
+      return res.status(400).json({ error: 'El archivo no es una imagen válida' });
+    }
+
+    const result = await (await getPool())
+      .request()
+      .input('id', sql.Int, req.datos.params.id)
+      .input('imagen', sql.VarBinary(sql.MAX), req.body)
+      .input('tipo', sql.VarChar(20), tipo)
+      .query(
+        `UPDATE productos
+         SET imagen = @imagen, imagen_tipo = @tipo, imagen_version = imagen_version + 1
+         OUTPUT INSERTED.imagen_version AS imagenV
+         WHERE id = @id`
+      );
+
+    if (!result.recordset[0]) return res.status(404).json({ error: 'Producto no encontrado' });
+    res.json({ productoId: req.datos.params.id, imagenV: result.recordset[0].imagenV });
+  })
+);
+
+// Quitar la foto (solo dueño)
+router.delete(
+  '/:id/imagen',
+  autenticar,
+  permitirRoles('dueno'),
+  validar({ params: idSchema }),
+  asyncHandler(async (req, res) => {
+    const result = await (await getPool())
+      .request()
+      .input('id', sql.Int, req.datos.params.id)
+      .query(
+        `UPDATE productos
+         SET imagen = NULL, imagen_tipo = NULL, imagen_version = imagen_version + 1
+         WHERE id = @id AND imagen_tipo IS NOT NULL`
+      );
+    if (result.rowsAffected[0] === 0) {
+      return res.status(404).json({ error: 'El producto no tiene foto' });
+    }
+    res.status(204).end();
   })
 );
 

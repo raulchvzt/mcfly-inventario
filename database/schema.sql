@@ -108,6 +108,9 @@ CREATE TABLE productos (
   ultimo_costo DECIMAL(10,2) NOT NULL DEFAULT 0
     CONSTRAINT ck_productos_costo CHECK (ultimo_costo >= 0),
   activo BIT NOT NULL DEFAULT 1,
+  imagen VARBINARY(MAX) NULL,
+  imagen_tipo VARCHAR(20) NULL,
+  imagen_version INT NOT NULL DEFAULT 0,
   creado_en DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
   CONSTRAINT uq_productos_nombre_presentacion UNIQUE (nombre, presentacion)
 );
