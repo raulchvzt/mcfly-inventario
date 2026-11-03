@@ -17,7 +17,7 @@
   flex-direction: column;
   gap: 4px;
 }
-.side__logo { width: 104px; height: 104px; object-fit: contain; margin: 0 auto 12px; }
+.side__logo { width: 64px; height: 64px; object-fit: contain; margin: 0 auto 12px; }
 .side__nav { display: flex; flex-direction: column; gap: 4px; }
 .side__nav--pie { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--ln); }
 
@@ -66,16 +66,16 @@
 }
 .usuario__datos small { font-size: 12px; color: var(--mu); }
 
-.main { padding: 24px; min-width: 0; }
+.main { padding: 32px 40px; min-width: 0; }
 
-/* En pantallas más angostas la barra se reduce a íconos */
+/* En pantallas medianas la barra se reduce a íconos */
 @media (max-width: 1100px) {
   .side { width: 72px; align-items: center; padding: 16px 0; }
   .side__nav { align-items: center; }
   .nav__item, .usuario { width: 44px; justify-content: center; padding: 0; }
   .nav__txt { display: none; }
   .side__logo { width: 44px; height: 44px; }
-  .main { padding: 16px; }
+  .main { padding: 20px; }
 }
 
 @keyframes deslizar {
@@ -84,4 +84,33 @@
 }
 @media (prefers-reduced-motion: no-preference) {
   .side { animation: deslizar 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+}
+
+/* En celular la navegación pasa a una barra fija abajo */
+@media (max-width: 640px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side {
+    position: fixed;
+    z-index: 20;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(64px + env(safe-area-inset-bottom));
+    padding: 0 8px env(safe-area-inset-bottom);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0;
+    border-right: 0;
+    border-top: 1px solid var(--ln);
+    animation: none;
+  }
+  .side__logo, .usuario, .nav__item--off { display: none; }
+  .side__nav, .side__nav--pie { flex-direction: row; align-items: center; gap: 4px; margin: 0; padding: 0; border: 0; }
+  .side__nav { flex: 1; justify-content: space-around; }
+  .nav__item { width: auto; min-width: 64px; height: 52px; padding: 0 10px; flex-direction: column; justify-content: center; gap: 2px; font-size: 11px; }
+  .nav__txt { display: block; }
+  .main { padding: 16px 16px calc(88px + env(safe-area-inset-bottom)); }
 }

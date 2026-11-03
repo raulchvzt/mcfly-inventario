@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import {
   IconArrowsExchange,
   IconChartBar,
+  IconDroplet,
   IconLayoutDashboard,
   IconLogout,
   IconPackage,
@@ -14,13 +15,13 @@ import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 import './Layout.css';
 
-const TODOS = ['dueno', 'encargado', 'empleado'];
 const GESTION = ['dueno', 'encargado'];
-
 
 // Los elementos sin "to" todavía no tienen pantalla y se muestran apagados
 const PRINCIPAL = [
-  { to: '/', texto: 'Panel', Icono: IconLayoutDashboard, roles: TODOS },
+  { to: '/', texto: 'Panel', Icono: IconLayoutDashboard, roles: GESTION },
+  { to: '/', texto: 'Consumo', Icono: IconDroplet, roles: ['empleado'] },
+  { to: '/consumo', texto: 'Consumo', Icono: IconDroplet, roles: GESTION },
   { texto: 'Inventario', Icono: IconPackage, roles: GESTION },
   { texto: 'Movimientos', Icono: IconArrowsExchange, roles: GESTION },
   { texto: 'Compras', Icono: IconShoppingCart, roles: GESTION },
@@ -54,11 +55,9 @@ function Item({ to, texto, Icono }) {
   );
 }
 
-
 export default function Layout() {
   const { usuario, cerrarSesion } = useAuth();
   const visible = (i) => i.roles.includes(usuario.rol);
-  
 
   return (
     <div className="app">
