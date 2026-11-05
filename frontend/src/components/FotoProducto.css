@@ -1,0 +1,19 @@
+.foto { flex: none; display: block; object-fit: cover; background: #fff; border: 1px solid var(--ln); }
+.foto--icono { display: grid; place-items: center; border-color: transparent; }
+
+.foto-cam {
+  position: absolute;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--ln);
+  color: var(--mu);
+  cursor: pointer;
+}
+.foto-cam:hover:not(:disabled) { color: var(--pr); border-color: var(--pr); }
+.foto-cam:disabled { opacity: 0.6; cursor: wait; }
