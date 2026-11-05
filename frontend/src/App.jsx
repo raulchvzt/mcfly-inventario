@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Panel from './pages/Panel';
 import Consumo from './pages/Consumo';
 import Historial from './pages/Historial';
+import Inventario from './pages/Inventario';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
               <Route path="/" element={<Panel />} />
               <Route path="/consumo" element={<Consumo />} />
               <Route element={<ProtectedRoute roles={['dueno', 'encargado']} />}>
+                <Route path="/inventario" element={<Inventario />} />
                 <Route path="/movimientos" element={<Historial />} />
               </Route>
             </Route>
