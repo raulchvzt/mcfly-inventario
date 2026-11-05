@@ -23,7 +23,7 @@ const PRINCIPAL = [
   { to: '/', texto: 'Consumo', Icono: IconDroplet, roles: ['empleado'] },
   { to: '/consumo', texto: 'Consumo', Icono: IconDroplet, roles: GESTION },
   { texto: 'Inventario', Icono: IconPackage, roles: GESTION },
-  { texto: 'Movimientos', Icono: IconArrowsExchange, roles: GESTION },
+  { to: '/movimientos', texto: 'Movimientos', Icono: IconArrowsExchange, roles: GESTION },
   { texto: 'Compras', Icono: IconShoppingCart, roles: GESTION },
   { texto: 'Transferencias', Icono: IconTruck, roles: GESTION },
   { texto: 'Reportes', Icono: IconChartBar, roles: GESTION },

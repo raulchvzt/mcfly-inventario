@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Panel from './pages/Panel';
 import Consumo from './pages/Consumo';
+import Historial from './pages/Historial';
 
 export default function App() {
   return (
@@ -15,11 +16,13 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
               <Route path="/" element={<Panel />} />
-                <Route path="/consumo" element={<Consumo />} />
+              <Route path="/consumo" element={<Consumo />} />
+              <Route element={<ProtectedRoute roles={['dueno', 'encargado']} />}>
+                <Route path="/movimientos" element={<Historial />} />
+              </Route>
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
-          
         </Routes>
       </AuthProvider>
     </BrowserRouter>
