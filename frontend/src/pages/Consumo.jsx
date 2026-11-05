@@ -11,7 +11,7 @@ import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { BotonFoto, FotoProducto } from '../components/FotoProducto';
 import { horaMovimiento, numero, UNIDAD } from '../utils/formato';
-import './Consumo.css';
+import './css/Consumo.css';
 
 // Cuánto suben o bajan los botones + y − según la unidad del producto
 const PASO = { litro: 1, galon: 1, pieza: 1, mililitro: 100 };

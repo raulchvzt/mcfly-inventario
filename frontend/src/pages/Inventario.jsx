@@ -12,7 +12,7 @@ import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { BotonFoto, FotoProducto } from '../components/FotoProducto';
 import { moneda, numero, UNIDAD } from '../utils/formato';
-import './Inventario.css';
+import './css/Inventario.css';
 
 const UNIDADES = [
   { valor: 'litro', texto: 'Litro (L)' },

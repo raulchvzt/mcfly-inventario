@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { IconEye, IconEyeOff } from '@tabler/icons-react';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
-import './Login.css';
+import './css/Login.css';
 
 const INTERVALO = 6000; // milisegundos entre imágenes
 

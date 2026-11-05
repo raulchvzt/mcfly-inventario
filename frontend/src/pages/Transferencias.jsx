@@ -13,7 +13,7 @@ import {
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { numero, UNIDAD } from '../utils/formato';
-import './Transferencias.css';
+import './css/Transferencias.css';
 
 const LIMITE = 25;
 

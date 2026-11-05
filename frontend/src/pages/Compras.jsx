@@ -3,7 +3,7 @@ import { IconAlertTriangle, IconCheck, IconPlus, IconTrash, IconX } from '@table
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { moneda, numero, UNIDAD } from '../utils/formato';
-import './Compras.css';
+import './css/Compras.css';
 
 const LIMITE = 25;
 const FORMAS = [
