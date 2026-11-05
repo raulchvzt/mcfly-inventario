@@ -29,7 +29,7 @@ const PRINCIPAL = [
   { texto: 'Reportes', Icono: IconChartBar, roles: GESTION },
 ];
 const CUENTA = [
-  { texto: 'Usuarios', Icono: IconUsers, roles: ['dueno'] },
+  { to: '/usuarios', texto: 'Usuarios', Icono: IconUsers, roles: ['dueno'] },
   { texto: 'Ajustes', Icono: IconSettings, roles: ['dueno'] },
 ];
 const ROL = { dueno: 'Dueño', encargado: 'Encargado', empleado: 'Empleado' };
