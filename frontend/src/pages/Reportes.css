@@ -1,0 +1,66 @@
+.rp { display: flex; flex-direction: column; gap: 24px; max-width: 1760px; margin: 0 auto; }
+
+.rp__cab { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.rp__cab h1 { margin: 0; font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
+.rp__sub { margin: 4px 0 0; font-size: 15px; color: var(--mu); }
+
+.rp__btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border: 0; border-radius: 14px; background: var(--pr); color: #fff; font-size: 15px; font-weight: 500; cursor: pointer; }
+.rp__btn:hover:not(:disabled) { background: var(--pr-h); }
+.rp__btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.rp__tabs { display: flex; gap: 4px; padding: 4px; width: fit-content; max-width: 100%; overflow-x: auto; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; }
+.rp__tabs button { flex: none; border: 0; background: none; padding: 9px 20px; border-radius: 10px; font-size: 15px; color: var(--mu); cursor: pointer; white-space: nowrap; }
+.rp__tabs button.on { background: var(--pr); color: #fff; }
+
+.rp__tarjeta { background: var(--sf); border: 1px solid var(--ln); border-radius: 20px; padding: 24px; min-width: 0; }
+.rp__ayuda { margin: 0 0 16px; font-size: 15px; color: var(--mu); }
+.rp__error { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; padding: 12px 14px; border-radius: 14px; background: #fee4e2; color: #b42318; font-size: 14px; }
+.rp__vacio { margin: 20px 0 0; font-size: 15px; color: var(--mu); }
+
+.rp__filtros { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px; }
+.rp__campo { display: flex; flex-direction: column; gap: 6px; min-width: 170px; font-size: 13px; font-weight: 500; color: var(--mu); }
+.rp__campo input,
+.rp__campo select { height: 46px; padding: 0 12px; background: var(--field); border: 1px solid var(--ln); border-radius: 12px; font-size: 14px; font-weight: 400; color: var(--tx); }
+.rp__campo input:focus,
+.rp__campo select:focus { outline: none; border-color: var(--pr); background: #fff; box-shadow: 0 0 0 3px rgba(14, 122, 181, 0.15); }
+.rp__rapidos { display: flex; flex-wrap: wrap; gap: 8px; height: 46px; align-items: center; }
+.rp__rapidos button { padding: 7px 14px; border: 1px solid var(--ln); border-radius: 999px; background: var(--sf); font-size: 13px; color: var(--tx); cursor: pointer; }
+.rp__rapidos button.on { background: #e3f3fb; border-color: var(--pr); color: var(--pr); font-weight: 500; }
+
+.rp__resumen { display: flex; flex-wrap: wrap; gap: 40px; margin: 24px 0 8px; padding: 18px 20px; border-radius: 14px; background: var(--field); }
+.rp__resumen span { display: block; font-size: 13px; color: var(--mu); }
+.rp__resumen b { display: block; margin-top: 2px; font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.rp__scroll { margin-top: 16px; overflow-x: auto; transition: opacity 0.2s; }
+.rp__scroll--carga { opacity: 0.55; }
+.rp__tabla { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; }
+.rp__tabla th { padding: 0 12px 10px; text-align: left; font-size: 13px; font-weight: 400; color: var(--mu); white-space: nowrap; }
+.rp__tabla td { padding: 13px 12px; border-top: 1px solid var(--ln); vertical-align: middle; }
+.rp__tabla th:first-child, .rp__tabla td:first-child { padding-left: 0; }
+.rp__tabla .der { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rp__oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.rp__peso { display: flex; align-items: center; gap: 10px; min-width: 150px; border-top: 0 !important; }
+.rp__tabla tr { position: relative; }
+.rp__barra { flex: 1; height: 8px; border-radius: 5px; background: var(--field); overflow: hidden; }
+.rp__barra i { display: block; height: 100%; border-radius: 5px; background: var(--b1); }
+.rp__pct { width: 36px; text-align: right; font-size: 13px; color: var(--mu); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 640px) {
+  .rp__cab h1 { font-size: 28px; }
+  .rp__tarjeta { padding: 16px; }
+  .rp__campo { min-width: 100%; }
+  .rp__resumen { gap: 24px; }
+  .rp__btn { width: 100%; }
+}
+
+@keyframes rp-entrar {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rp .entra {
+    animation: rp-entrar 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+}
