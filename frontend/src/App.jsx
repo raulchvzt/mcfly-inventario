@@ -9,6 +9,7 @@ import Historial from './pages/Historial';
 import Inventario from './pages/Inventario';
 import Compras from './pages/Compras';
 import Transferencias from './pages/Transferencias';
+import Usuarios from './pages/Usuarios';
 
 export default function App() {
   return (
@@ -25,6 +26,9 @@ export default function App() {
                 <Route path="/compras" element={<Compras />} />
                 <Route path="/transferencias" element={<Transferencias />} />
                 <Route path="/movimientos" element={<Historial />} />
+              </Route>
+              <Route element={<ProtectedRoute roles={['dueno']} />}>
+                <Route path="/usuarios" element={<Usuarios />} />
               </Route>
             </Route>
           </Route>
