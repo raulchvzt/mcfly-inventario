@@ -195,11 +195,9 @@ El dueño se crea con `crear-dueno.js`.
 - [x] Backend: autenticación, roles, productos, proveedores, movimientos, stock, compras, transferencias, resumen y reportes
 - [x] Frontend: login, panel, consumo, inventario, compras, transferencias, movimientos, reportes y usuarios
 - [x] Fotos de producto
-- [ ] Conteos físicos con comparación contra el sistema (segunda etapa)
-- [ ] Cancelación de transferencias en tránsito
 - [x] Capturas
 - [ ] Despliegue
 
 ## Autor
 
-Tu nombre · [GitHub](https://github.com/TU-USUARIO)
+Raul Alejandro Chavez Torres · [GitHub](https://github.com/raulchvzt)

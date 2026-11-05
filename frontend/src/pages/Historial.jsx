@@ -3,7 +3,7 @@ import { IconChevronLeft, IconChevronRight, IconFilterOff } from '@tabler/icons-
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { moneda, numero, UNIDAD } from '../utils/formato';
-import './Historial.css';
+import './css/Historial.css';
 
 const LIMITE = 25;
 

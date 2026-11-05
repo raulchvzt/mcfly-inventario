@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { IconKey, IconPencil, IconPlus, IconRefresh, IconX } from '@tabler/icons-react';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
-import './Usuarios.css';
+import './css/Usuarios.css';
 
 const ROLES = [
   { valor: 'encargado', texto: 'Encargado' },

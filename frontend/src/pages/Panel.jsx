@@ -11,7 +11,7 @@ import {
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { haceCuanto, horaMovimiento, moneda, numero, UNIDAD } from '../utils/formato';
-import './Panel.css'
+import './css/Panel.css'
 import Consumo from './Consumo';;
 
 const COLORES_SUC = ['var(--b1)', 'var(--b2)', '#cbd5e1'];

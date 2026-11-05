@@ -3,7 +3,7 @@ import { IconAlertTriangle, IconDownload } from '@tabler/icons-react';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { moneda, numero, UNIDAD } from '../utils/formato';
-import './Reportes.css';
+import './css/Reportes.css';
 
 const dos = (n) => String(n).padStart(2, '0');
 const aFecha = (d) => `${d.getFullYear()}-${dos(d.getMonth() + 1)}-${dos(d.getDate())}`;

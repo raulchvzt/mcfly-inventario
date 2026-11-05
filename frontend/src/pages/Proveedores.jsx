@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { IconPencil, IconPhone, IconPlus, IconSearch, IconUser, IconX } from '@tabler/icons-react';
 import { api } from '../api/client';
-import './Proveedores.css';
+import './css/Proveedores.css';
 
 function ModalProveedor({ proveedor, onCerrar, onGuardado }) {
   const nuevo = !proveedor;
