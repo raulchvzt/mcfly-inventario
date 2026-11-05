@@ -11,6 +11,7 @@ import Compras from './pages/Compras';
 import Transferencias from './pages/Transferencias';
 import Usuarios from './pages/Usuarios';
 import Reportes from './pages/Reportes';
+import Proveedores from './pages/Proveedores';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
                 <Route path="/reportes" element={<Reportes />} />
               </Route>
               <Route element={<ProtectedRoute roles={['dueno']} />}>
+                <Route path="/proveedores" element={<Proveedores />} />
                 <Route path="/usuarios" element={<Usuarios />} />
               </Route>
             </Route>

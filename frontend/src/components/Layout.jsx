@@ -1,12 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import {
   IconArrowsExchange,
+  IconBuildingStore,
   IconChartBar,
   IconDroplet,
   IconLayoutDashboard,
   IconLogout,
   IconPackage,
-  IconSettings,
   IconShoppingCart,
   IconTruck,
   IconUsers,
@@ -29,8 +29,8 @@ const PRINCIPAL = [
   { to: '/reportes', texto: 'Reportes', Icono: IconChartBar, roles: GESTION },
 ];
 const CUENTA = [
+  { to: '/proveedores', texto: 'Proveedores', Icono: IconBuildingStore, roles: ['dueno'] },
   { to: '/usuarios', texto: 'Usuarios', Icono: IconUsers, roles: ['dueno'] },
-  { texto: 'Ajustes', Icono: IconSettings, roles: ['dueno'] },
 ];
 const ROL = { dueno: 'Dueño', encargado: 'Encargado', empleado: 'Empleado' };
 
