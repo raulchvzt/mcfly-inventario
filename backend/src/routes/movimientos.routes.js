@@ -154,4 +154,26 @@ router.get(
   })
 );
 
+router.get(
+  '/filtros',
+  autenticar,
+  permitirRoles('dueno', 'encargado'),
+  asyncHandler(async (req, res) => {
+    const pool = await getPool();
+    const reqUsuarios = pool.request();
+    let filtroUsuarios = '';
+    if (req.usuario.rol === 'encargado') {
+      filtroUsuarios = `WHERE sucursal_id = @sucursal
+        OR id IN (SELECT usuario_id FROM movimientos WHERE sucursal_id = @sucursal)`;
+      reqUsuarios.input('sucursal', sql.Int, req.usuario.sucursalId);
+    }
+    const [productos, usuarios] = await Promise.all([
+      pool.request().query('SELECT id, nombre, presentacion FROM productos ORDER BY nombre, presentacion'),
+      reqUsuarios.query(`SELECT id, nombre FROM usuarios ${filtroUsuarios} ORDER BY nombre`),
+    ]);
+    res.json({ productos: productos.recordset, usuarios: usuarios.recordset });
+  })
+);
+
+
 module.exports = router;
