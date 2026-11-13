@@ -157,13 +157,16 @@ DB_PASSWORD=tu_contraseña
 JWT_SECRET=un_texto_largo_y_aleatorio
 ```
 
-Crea al dueño y, si quieres, los datos de demostración:
+Crea al dueño (el comando pide nombre, correo y contraseña) y, si quieres, los datos de demostración:
 
 ```bash
-node src/scripts/crear-dueno.js
-node src/scripts/seed-demo.js
+node scripts/crear-dueno.js "Tu nombre" dueno@mcfly.test "una contraseña de 8+ caracteres"
+node scripts/seed-demo.js
+node scripts/seed-historial.js
 npm run dev
 ```
+
+`seed-demo.js` carga el catálogo, usuarios, compras y la última semana de consumo. `seed-historial.js` es opcional y se corre después: agrega 4 meses de historial (consumos diarios con más movimiento los fines de semana, compras periódicas con precios que suben poco a poco, mermas, transferencias confirmadas y 6 productos más) para ver el sistema como si llevara meses en uso. No cambia el stock que ya tenían los productos. Con `--simular` prueba la lógica sin tocar la base de datos.
 
 ### 3. Frontend
 ```bash
@@ -182,7 +185,7 @@ Las crea `seed-demo.js`. **Son solo para desarrollo:** no uses esas contraseñas
 | Encargada (Centro) | `ana@mcfly.test` | `Demo12345` |
 | Empleado | `luis@mcfly.test` | `Demo12345` |
 
-El dueño se crea con `crear-dueno.js`.
+Las dos cuentas de encargado (Ana, Centro; Mario, Villa) y las de empleado (Luis, Centro; Paco, Villa) usan la misma contraseña. El dueño se crea con `crear-dueno.js`.
 
 ## Documentación
 
