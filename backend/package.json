@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "seed": "node scripts/seed-demo.js",
+    "seed:historial": "node scripts/seed-historial.js",
+    "crear-dueno": "node scripts/crear-dueno.js"
   },
   "keywords": [],
   "author": "",
