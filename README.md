@@ -48,9 +48,15 @@ Una herramienta que responde **qué hay, dónde está y cuánto se gasta**, con 
 
 ![Inventario](docs/capturas/inventario.png)
 
-| Transferencias | Panel en celular |
+**Transferencias**
+
+![Transferencias](docs/capturas/transferencias.png)
+
+**En celular**
+
+| Panel | Consumo |
 |---|---|
-| ![Transferencias](docs/capturas/transferencias.png) | <img src="docs/capturas/panel-celular.png" width="300" alt="Panel en celular"> |
+| <img src="docs/capturas/panel-celular.png" width="300" alt="Panel en celular"> | <img src="docs/capturas/consumo-celular.png" width="300" alt="Consumo en celular"> |
 
 <details>
 <summary>Ver más pantallas</summary>
