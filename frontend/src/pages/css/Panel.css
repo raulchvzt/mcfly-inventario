@@ -37,7 +37,8 @@
 .alertas { margin: 0; padding: 0; list-style: none; }
 .alertas li { padding: 16px 0; border-top: 1px solid var(--ln); }
 .alertas li:first-child { padding-top: 0; border-top: 0; }
-.fila { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.fila { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.alertas .fila .nm { flex: 1; min-width: 0; }
 .nm { margin: 0; font-size: 16px; font-weight: 500; }
 .nm .mu { font-weight: 400; }
 .pb { height: 8px; margin: 10px 0 8px; background: var(--field); border-radius: 5px; overflow: hidden; }

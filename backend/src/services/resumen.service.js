@@ -107,6 +107,8 @@ async function obtenerResumen({ sucursalId, usuario }) {
     return {
       productoId: a.productoId,
       nombre: a.nombre,
+      categoria: a.categoria,
+      imagenV: a.imagenV,
       presentacion: a.presentacion,
       unidadMedida: a.unidadMedida,
       sucursal: a.sucursal,
