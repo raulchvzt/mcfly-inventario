@@ -14,6 +14,7 @@ const transferenciasRoutes = require('./routes/transferencias.routes');
 const resumenRoutes = require('./routes/resumen.routes');
 const sucursalesRoutes = require('./routes/sucursales.routes');
 const reportesRoutes = require('./routes/reportes.routes');
+const estadisticasRoutes = require('./routes/estadisticas.routes');
 
 
 const app = express();
@@ -44,6 +45,7 @@ app.use('/api/transferencias', transferenciasRoutes);
 app.use('/api/resumen', resumenRoutes);
 app.use('/api/sucursales', sucursalesRoutes);
 app.use('/api/reportes', reportesRoutes);
+app.use('/api/estadisticas', estadisticasRoutes);
 // Siempre al final
 app.use(noEncontrado);
 app.use(manejarErrores);

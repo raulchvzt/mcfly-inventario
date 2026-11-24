@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -11,6 +12,9 @@ import Compras from './pages/Compras';
 import Transferencias from './pages/Transferencias';
 import Usuarios from './pages/Usuarios';
 import Reportes from './pages/Reportes';
+
+// Recharts pesa bastante: esta pantalla se descarga solo cuando se abre
+const Estadisticas = lazy(() => import('./pages/Estadisticas'));
 import Proveedores from './pages/Proveedores';
 
 export default function App() {
@@ -29,6 +33,14 @@ export default function App() {
                 <Route path="/transferencias" element={<Transferencias />} />
                 <Route path="/movimientos" element={<Historial />} />
                 <Route path="/reportes" element={<Reportes />} />
+                <Route
+                  path="/estadisticas"
+                  element={
+                    <Suspense fallback={<div className="pantalla-carga">Cargando…</div>}>
+                      <Estadisticas />
+                    </Suspense>
+                  }
+                />
               </Route>
               <Route element={<ProtectedRoute roles={['dueno']} />}>
                 <Route path="/proveedores" element={<Proveedores />} />
