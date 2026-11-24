@@ -36,13 +36,27 @@ Una herramienta que responde **qué hay, dónde está y cuánto se gasta**, con 
 
 ![Panel](docs/capturas/panel.png)
 
-| Inventario | Transferencias |
-|---|---|
-| ![Inventario](docs/capturas/inventario.png) | ![Transferencias](docs/capturas/transferencias.png) |
+**Estadísticas**
 
-| Consumo | Panel en celular |
+![Estadísticas](docs/capturas/estadisticas.png)
+
+**Consumo**
+
+![Consumo](docs/capturas/consumo.png)
+
+**Inventario**
+
+![Inventario](docs/capturas/inventario.png)
+
+**Transferencias**
+
+![Transferencias](docs/capturas/transferencias.png)
+
+**En celular**
+
+| Panel | Consumo |
 |---|---|
-| ![Consumo](docs/capturas/consumo.png) | <img src="docs/capturas/panel-celular.png" width="300" alt="Panel en celular"> |
+| <img src="docs/capturas/panel-celular.png" width="300" alt="Panel en celular"> | <img src="docs/capturas/consumo-celular.png" width="300" alt="Consumo en celular"> |
 
 <details>
 <summary>Ver más pantallas</summary>
@@ -50,6 +64,12 @@ Una herramienta que responde **qué hay, dónde está y cuánto se gasta**, con 
 **Inicio de sesión**
 
 ![Login](docs/capturas/login.jpg)
+
+**Más gráficas de Estadísticas**
+
+![Estadísticas: categorías, productos y compras](docs/capturas/estadisticas-2.png)
+
+![Estadísticas: proveedores, sucursales, cobertura y costos](docs/capturas/estadisticas-3.png)
 
 **Movimientos**
 
