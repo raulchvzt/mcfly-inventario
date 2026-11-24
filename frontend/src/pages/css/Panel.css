@@ -9,7 +9,8 @@
 .seg button { border: 0; background: none; padding: 9px 20px; border-radius: 10px; font-size: 15px; color: var(--mu); cursor: pointer; }
 .seg button.on { background: var(--pr); color: #fff; }
 .etiqueta { font-size: 15px; padding: 11px 18px; border: 1px solid var(--ln); border-radius: 14px; background: var(--sf); }
-.campana { position: relative; width: 48px; height: 48px; display: grid; place-items: center; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; color: var(--mu); }
+.campana { position: relative; width: 48px; height: 48px; display: grid; place-items: center; background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; color: var(--mu); cursor: pointer; padding: 0; }
+.campana:hover { border-color: var(--b1); color: var(--pr); }
 .campana b { position: absolute; top: -7px; right: -7px; min-width: 22px; height: 22px; padding: 0 6px; display: grid; place-items: center; border-radius: 999px; background: var(--ag); color: #fff; font-size: 13px; font-weight: 500; }
 
 .resumen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -115,3 +116,5 @@
     animation-delay: calc(var(--i, 0) * 90ms + 300ms + var(--d, 0) * 60ms);
   }
 }
+.tarjeta.resalta { animation: resalta 1.4s ease-out; }
+@keyframes resalta { 0%, 35% { box-shadow: 0 0 0 3px var(--b1); } 100% { box-shadow: 0 0 0 3px transparent; } }
