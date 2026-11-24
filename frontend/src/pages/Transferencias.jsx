@@ -11,6 +11,7 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import { api } from '../api/client';
+import { FotoProducto } from '../components/FotoProducto';
 import { useAuth } from '../context/AuthContext';
 import { numero, UNIDAD } from '../utils/formato';
 import './css/Transferencias.css';
@@ -170,6 +171,8 @@ function FormularioTransferencia({ esDueno, usuario, sucursales, onCancelar, onC
               <li key={l.clave} className="tr__linea">
                 <label className="tr__campo tr__campo--prod">
                   {i === 0 ? 'Producto' : <span className="tr__oculto">Producto</span>}
+                  <span className="foto-sel">
+                  <FotoProducto producto={d || {}} tamano={44} />
                   <select
                     value={l.productoId}
                     onChange={(e) => cambiarLinea(l.clave, { productoId: e.target.value, cantidad: '' })}
@@ -186,6 +189,7 @@ function FormularioTransferencia({ esDueno, usuario, sucursales, onCancelar, onC
                       </option>
                     ))}
                   </select>
+                  </span>
                 </label>
                 <label className="tr__campo">
                   {i === 0 ? `Cantidad${u ? ` (${u})` : ''}` : <span className="tr__oculto">Cantidad</span>}

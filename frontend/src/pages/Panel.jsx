@@ -9,6 +9,7 @@ import {
   IconTruck,
 } from '@tabler/icons-react';
 import { api } from '../api/client';
+import { FotoProducto } from '../components/FotoProducto';
 import { useAuth } from '../context/AuthContext';
 import { haceCuanto, horaMovimiento, moneda, numero, UNIDAD } from '../utils/formato';
 import './css/Panel.css'
@@ -156,6 +157,7 @@ function Alertas({ alertas, orden }) {
             return (
               <li key={`${a.productoId}-${a.sucursal}`}>
                 <div className="fila">
+                  <FotoProducto producto={a} tamano={48} />
                   <p className="nm">
                     {a.nombre} <span className="mu">{a.presentacion}</span>
                   </p>

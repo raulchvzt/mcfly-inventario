@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { IconAlertTriangle, IconCheck, IconPlus, IconTrash, IconX } from '@tabler/icons-react';
 import { api } from '../api/client';
+import { FotoProducto } from '../components/FotoProducto';
 import { useAuth } from '../context/AuthContext';
 import { moneda, numero, UNIDAD } from '../utils/formato';
 import './css/Compras.css';
@@ -191,6 +192,11 @@ function FormularioCompra({ esDueno, sucursales, proveedores, productos, onCance
             <li key={l.clave} className="cp__linea">
               <label className="cp__campo cp__campo--prod">
                 {i === 0 ? 'Producto' : <span className="cp__oculto">Producto</span>}
+                <span className="foto-sel">
+                <FotoProducto
+                  producto={{ productoId: p?.id, imagenV: p?.imagenVersion, categoria: p?.categoria }}
+                  tamano={44}
+                />
                 <select value={l.productoId} onChange={(e) => elegirProducto(l.clave, e.target.value)}>
                   <option value="">Elige un producto</option>
                   {productos.map((x) => (
@@ -199,6 +205,7 @@ function FormularioCompra({ esDueno, sucursales, proveedores, productos, onCance
                     </option>
                   ))}
                 </select>
+                </span>
               </label>
               <label className="cp__campo">
                 {i === 0 ? `Cantidad${u ? ` (${u})` : ''}` : <span className="cp__oculto">Cantidad</span>}

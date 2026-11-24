@@ -411,7 +411,7 @@ export default function Inventario() {
                         <div className="inv__prod">
                           <FotoProducto
                             producto={{ productoId: p.id, imagenV: p.imagenVersion, categoria: p.categoria }}
-                            tamano={44}
+                            tamano={64}
                           />
                           <span>
                             <b>{p.nombre}</b>
