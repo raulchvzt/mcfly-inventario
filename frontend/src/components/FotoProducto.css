@@ -17,3 +17,6 @@
 }
 .foto-cam:hover:not(:disabled) { color: var(--pr); border-color: var(--pr); }
 .foto-cam:disabled { opacity: 0.6; cursor: wait; }
+/* Foto junto a un selector de producto */
+.foto-sel { display: flex; align-items: center; gap: 10px; }
+.foto-sel select { flex: 1; min-width: 0; }

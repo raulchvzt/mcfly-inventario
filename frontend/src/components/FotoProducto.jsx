@@ -20,13 +20,16 @@ const POR_CATEGORIA = {
 };
 const GENERICO = { Icono: IconPackage, fondo: '#f4f6f8', color: '#667085' };
 
-export function FotoProducto({ producto, tamano = 48 }) {
+// fluida: la foto ocupa todo el ancho de su contenedor y se mantiene cuadrada
+export function FotoProducto({ producto, tamano = 48, fluida = false }) {
   const url = urlImagen(producto.productoId, producto.imagenV);
   const [fallo, setFallo] = useState(false);
 
   useEffect(() => setFallo(false), [url]);
 
-  const estilo = { width: tamano, height: tamano, borderRadius: Math.round(tamano * 0.25) };
+  const estilo = fluida
+    ? { width: '100%', height: 'auto', aspectRatio: '1 / 1', borderRadius: 14 }
+    : { width: tamano, height: tamano, borderRadius: Math.round(tamano * 0.25) };
 
   if (url && !fallo) {
     return <img className="foto" style={estilo} src={url} alt="" loading="lazy" onError={() => setFallo(true)} />;

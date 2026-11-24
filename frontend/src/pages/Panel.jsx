@@ -9,6 +9,7 @@ import {
   IconTruck,
 } from '@tabler/icons-react';
 import { api } from '../api/client';
+import { FotoProducto } from '../components/FotoProducto';
 import { useAuth } from '../context/AuthContext';
 import { haceCuanto, horaMovimiento, moneda, numero, UNIDAD } from '../utils/formato';
 import './css/Panel.css'
@@ -139,7 +140,7 @@ function GraficaConsumo({ consumo, orden }) {
 
 function Alertas({ alertas, orden }) {
   return (
-    <article className="tarjeta entra" style={{ '--i': orden }}>
+    <article id="alertas-stock" className="tarjeta entra" style={{ '--i': orden }}>
       <div className="tarjeta__cab">
         <h2>Alertas de stock</h2>
       </div>
@@ -156,6 +157,7 @@ function Alertas({ alertas, orden }) {
             return (
               <li key={`${a.productoId}-${a.sucursal}`}>
                 <div className="fila">
+                  <FotoProducto producto={a} tamano={48} />
                   <p className="nm">
                     {a.nombre} <span className="mu">{a.presentacion}</span>
                   </p>
@@ -403,10 +405,22 @@ function PanelGestion() {
           ) : (
             miSucursal && <span className="etiqueta">{corto(miSucursal.nombre)}</span>
           )}
-          <span className="campana" role="status" aria-label={`${al.total} productos en alerta`}>
+          <button
+            type="button"
+            className="campana"
+            aria-label={`${al.total} productos en alerta. Ver alertas de stock`}
+            title="Ver alertas de stock"
+            onClick={() => {
+              const el = document.getElementById('alertas-stock');
+              el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              el?.classList.remove('resalta');
+              void el?.offsetWidth;
+              el?.classList.add('resalta');
+            }}
+          >
             <IconBell size={20} aria-hidden="true" />
             {al.total > 0 && <b>{al.total}</b>}
-          </span>
+          </button>
         </div>
       </header>
 

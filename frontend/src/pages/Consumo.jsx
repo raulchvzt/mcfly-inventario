@@ -9,7 +9,7 @@ import {
 } from '@tabler/icons-react';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
-import { BotonFoto, FotoProducto } from '../components/FotoProducto';
+import { FotoProducto } from '../components/FotoProducto';
 import { horaMovimiento, numero, UNIDAD } from '../utils/formato';
 import './css/Consumo.css';
 
@@ -127,10 +127,6 @@ export default function Consumo() {
     else if (cant > producto.stock) {
       problema = `Solo hay ${numero(producto.stock)} ${unidad} disponibles.`;
     }
-  }
-
-  function cambiarFoto(productoId, imagenV) {
-    setItems((prev) => prev.map((i) => (i.productoId === productoId ? { ...i, imagenV } : i)));
   }
 
   function elegir(item) {
@@ -271,7 +267,7 @@ export default function Consumo() {
                       disabled={i.stock <= 0}
                       onClick={() => elegir(i)}
                     >
-                      <FotoProducto producto={i} tamano={48} />
+                      <FotoProducto producto={i} fluida />
                       <span className="cn__item-nom">
                         <b>{i.nombre}</b>
                         <small>{i.presentacion}</small>
@@ -283,7 +279,6 @@ export default function Consumo() {
                         <Estado estado={estado} />
                       </span>
                     </button>
-                    {esDueno && <BotonFoto producto={i} onCambio={cambiarFoto} onError={setError} />}
                   </li>
                 );
               })}
@@ -319,7 +314,7 @@ export default function Consumo() {
             <form className="cn__form" onSubmit={registrar}>
               <p className="cn__etq">Producto elegido</p>
               <div className="cn__elegido">
-                <FotoProducto producto={producto} tamano={72} />
+                <FotoProducto producto={producto} fluida />
                 <div>
                   <h2>{producto.nombre}</h2>
                   <p className="cn__mu">

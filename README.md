@@ -26,6 +26,7 @@ Una herramienta que responde **qué hay, dónde está y cuánto se gasta**, con 
 | **Transferencias** | Envío entre sucursales en dos pasos: sale del origen y llega al destino cuando quien recibe lo confirma. |
 | **Movimientos** | Historial inmutable con filtros por tipo, producto, usuario, sucursal y fechas. |
 | **Reportes** | Consumo por producto, mermas, compras por proveedor y valor del inventario, con exportación a CSV. |
+| **Estadísticas** | Gráficas para ver tendencias de un vistazo: consumo por día y por categoría, qué productos se gastan más, compras contra consumo, cuántos días alcanzan las existencias y cómo cambió el costo de cada producto. Cada gráfica tiene su vista en tabla. |
 | **Proveedores** | Alta, edición y desactivación de proveedores con su contacto (solo el dueño). |
 | **Usuarios** | Alta, edición, contraseñas y desactivación de cuentas (solo el dueño). |
 
@@ -35,13 +36,27 @@ Una herramienta que responde **qué hay, dónde está y cuánto se gasta**, con 
 
 ![Panel](docs/capturas/panel.png)
 
-| Inventario | Transferencias |
-|---|---|
-| ![Inventario](docs/capturas/inventario.png) | ![Transferencias](docs/capturas/transferencias.png) |
+**Estadísticas**
 
-| Consumo | Panel en celular |
+![Estadísticas](docs/capturas/estadisticas.png)
+
+**Consumo**
+
+![Consumo](docs/capturas/consumo.png)
+
+**Inventario**
+
+![Inventario](docs/capturas/inventario.png)
+
+**Transferencias**
+
+![Transferencias](docs/capturas/transferencias.png)
+
+**En celular**
+
+| Panel | Consumo |
 |---|---|
-| ![Consumo](docs/capturas/consumo.png) | <img src="docs/capturas/panel-celular.png" width="300" alt="Panel en celular"> |
+| <img src="docs/capturas/panel-celular.png" width="300" alt="Panel en celular"> | <img src="docs/capturas/consumo-celular.png" width="300" alt="Consumo en celular"> |
 
 <details>
 <summary>Ver más pantallas</summary>
@@ -49,6 +64,12 @@ Una herramienta que responde **qué hay, dónde está y cuánto se gasta**, con 
 **Inicio de sesión**
 
 ![Login](docs/capturas/login.jpg)
+
+**Más gráficas de Estadísticas**
+
+![Estadísticas: categorías, productos y compras](docs/capturas/estadisticas-2.png)
+
+![Estadísticas: proveedores, sucursales, cobertura y costos](docs/capturas/estadisticas-3.png)
 
 **Movimientos**
 
@@ -102,7 +123,7 @@ Los permisos se validan **en el servidor** en cada petición; el menú del front
 
 | Capa | Tecnología |
 |---|---|
-| Frontend | React (Vite), react-router-dom, Tabler Icons, Poppins |
+| Frontend | React (Vite), react-router-dom, Recharts, Tabler Icons, Poppins |
 | Backend | Node.js + Express, zod |
 | Base de datos | SQL Server (paquete `mssql`) |
 | Autenticación | JWT + bcryptjs |
@@ -195,8 +216,8 @@ Las dos cuentas de encargado (Ana, Centro; Mario, Villa) y las de empleado (Luis
 
 - [x] Levantamiento de requerimientos
 - [x] Modelo de datos y esquema completo en SQL Server
-- [x] Backend: autenticación, roles, productos, proveedores, movimientos, stock, compras, transferencias, resumen y reportes
-- [x] Frontend: login, panel, consumo, inventario, compras, transferencias, movimientos, reportes y usuarios
+- [x] Backend: autenticación, roles, productos, proveedores, movimientos, stock, compras, transferencias, resumen, reportes y estadísticas
+- [x] Frontend: login, panel, consumo, inventario, compras, transferencias, movimientos, reportes, estadísticas, proveedores y usuarios
 - [x] Fotos de producto
 - [x] Capturas
 - [ ] Despliegue

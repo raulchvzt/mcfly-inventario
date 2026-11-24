@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import {
   IconArrowsExchange,
   IconBuildingStore,
+  IconChartAreaLine,
   IconChartBar,
   IconDroplet,
   IconLayoutDashboard,
@@ -27,6 +28,7 @@ const PRINCIPAL = [
   { to: '/compras', texto: 'Compras', Icono: IconShoppingCart, roles: GESTION },
   { to: '/transferencias', texto: 'Transferencias', Icono: IconTruck, roles: GESTION },
   { to: '/reportes', texto: 'Reportes', Icono: IconChartBar, roles: GESTION },
+  { to: '/estadisticas', texto: 'Estadísticas', Icono: IconChartAreaLine, roles: GESTION },
 ];
 const CUENTA = [
   { to: '/proveedores', texto: 'Proveedores', Icono: IconBuildingStore, roles: ['dueno'] },
